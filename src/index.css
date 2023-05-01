@@ -13,6 +13,10 @@ input:focus, textarea:focus, select:focus{
   box-shadow: none !important;
 }
 
+.linear-bg{
+  background: linear-gradient(269.82deg, #07091C00 0.17%, #080A1AD6 99.87%)
+}
+
 .hovers{
   @apply hidden;
 }

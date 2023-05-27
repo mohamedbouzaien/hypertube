@@ -6,9 +6,13 @@ function FlexMovieItems({movie}) {
   return (
     <>
         <div className='flex items-center gap-2'>
-            <span className='text-sm font-medium'>
-                { movie.category }
-            </span>
+            {
+                movie.genres.map((genre, index) => (
+                <span className='text-sm font-medium' key={index}>
+                    { genre }
+                </span>
+                ))
+            }
         </div>
         <div className='flex items-center gap-2'>
             <FaRegCalendarAlt className='text-subMain w-3 h-3' />
@@ -19,7 +23,7 @@ function FlexMovieItems({movie}) {
         <div className='flex items-center gap-2'>
             <BiTime className='text-subMain w-3 h-3' />
             <span className='text-sm font-medium'>
-                { movie.time }
+                { movie.runtime }
             </span>
         </div>
     </>

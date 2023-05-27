@@ -1,14 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../Layout/Layout'
 import Filters from '../Components/Filters'
-import { Movies } from '../Datas/MovieData'
 import Movie from '../Components/Movie'
 import { CgSpinner } from 'react-icons/cg'
-
+import axios from 'axios'
 
 function MoviesPage() {
-  const cursor = 3;
+  const cursor = 10;
   const [page, setPage] = useState(cursor);
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+      axios.get('https://yts.mx/api/v2/list_movies.json').then((res) => {
+          console.log(res.data.data.movies);
+          setMovies(res.data.data.movies);
+      }).catch((err) => {
+          console.error(err);
+      });
+  }, []);
   const LoadMore = () => {
     setPage(page + cursor);
   }
@@ -18,13 +26,13 @@ function MoviesPage() {
       <Filters />
       <p className='text-lg font-medium my-6'>
         <span className='font-bold text-subMain'>
-          {Movies.length}
+          {movies.length}
         </span>
         {' '} items found
       </p>
       <div className='grid sm:mt-10 mt-6 xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6'>
         {
-          Movies.slice(0, page).map((movie, index) => (
+          movies.slice(0, page).map((movie, index) => (
             <Movie key={index} movie={movie} />
           ))
         }

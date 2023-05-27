@@ -5,6 +5,7 @@ import Swiper, { Autoplay } from 'swiper'
 import { SwiperSlide } from 'swiper/react'
 
 function Casts() {
+  const UsersData = [];
   return (
     <div className='my-12'>
       <Titles title="Casts" Icon={FaUserFriends} />

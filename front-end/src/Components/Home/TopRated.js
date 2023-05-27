@@ -42,7 +42,7 @@ function TopRated() {
                                     <button className='w-12 h-12 flex-cols transitions hover:bg-subMain rounded-full bg-white bg-opacity-30 text-white'>
                                         <FaHeart />
                                     </button>
-                                    <Link to={`/movie/${movie.title}`} className="font-semibold text-xl trancuted line-clamp-2">{movie.title}</Link>
+                                    <Link to={`/movies/${movie.imdb_code}`} className="font-semibold text-xl trancuted line-clamp-2">{movie.title}</Link>
                                     <div className='flex gap-2 text-star'>
                                         <Rating value={movie.rating} />
                                     </div>

@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { MoviesModule } from './movies/movies.module';
 import { CommentsModule } from './comments/comments.module';
+import { LocalFilesModule } from './local-files/local-files.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -22,6 +24,8 @@ import * as Joi from 'joi';
     UsersModule,
     MoviesModule,
     CommentsModule,
+    LocalFilesModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

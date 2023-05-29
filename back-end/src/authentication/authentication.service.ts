@@ -37,7 +37,7 @@ export class AuthenticationService {
             }
 
         } catch (error) {
-            if (error?.code === PostGresErrorCode.UniqueViolation) {
+            if (error?.code === postgresErrorCode.UniqueViolation) {
                 throw new HttpException('User with that email already exists', HttpStatus.BAD_REQUEST);
             }
             throw new HttpException('Something went wrong', HttpStatus.INTERNAL_SERVER_ERROR);
@@ -98,28 +98,12 @@ export class AuthenticationService {
         ];
     }
 
-      public async getUserFromToken(token: string, tokenName: string) {
-        const payload: TokenPayload = this.jwtService.verify(token, {
-            secret: this.configService.get(tokenName)
-          });
-          if (payload.userId) {
-            return this.usersService.getUserWithRelations(payload.userId, []);
-          }
-      }
-
-    public async getUserFromSocket(socket: Socket) {
-        const cookie = socket.handshake.headers.cookie;
-        const { Authentication: authenticationToken } = parse(cookie);
-        const { Refresh: refreshToken } = parse(cookie);
-        let user;
-        if (refreshToken)
-            user = await this.getUserFromToken(refreshToken, 'JWT_REFRESH_TOKEN_SECRET');
-        else 
-            user = await this.getUserFromToken(authenticationToken, 'JWT_ACCESS_TOKEN_SECRET');
-        if (!user) {
-            console.log('invalides credentials');
-            throw new WsException('Invalid credentials.');
+    public async getUserFromToken(token: string, tokenName: string) {
+    const payload: TokenPayload = this.jwtService.verify(token, {
+        secret: this.configService.get(tokenName)
+        });
+        if (payload.userId) {
+        return this.usersService.getById(payload.userId);
         }
-        return user;
-      }
+    }
 }

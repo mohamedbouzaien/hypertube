@@ -13,6 +13,12 @@ export class RegisterDto {
     @MinLength(8)
     password: string;
 
+    @IsNotEmpty()
+    firstName: string;
+
+    @IsNotEmpty()
+    lastName: string;
+
     @IsString()
     @IsOptional()
     intra_id: string;

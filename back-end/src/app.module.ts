@@ -7,7 +7,9 @@ import { MoviesModule } from './movies/movies.module';
 import { CommentsModule } from './comments/comments.module';
 import { LocalFilesModule } from './local-files/local-files.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { TwoFactorAuthenticationModule } from './two-factor-authentication/two-factor-authentication.module';
 import * as Joi from 'joi';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import * as Joi from 'joi';
     CommentsModule,
     LocalFilesModule,
     AuthenticationModule,
+    TwoFactorAuthenticationModule,
+    DatabaseModule
   ],
   controllers: [AppController],
   providers: [AppService],

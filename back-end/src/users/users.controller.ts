@@ -77,14 +77,6 @@ export class UsersController {
         return this.usersService.getByUsername(username);
     }
 
-    @Post('status')
-    @UseGuards(JwtTwoFactornGuard)
-    async   setStatus(@Body() {status} :UpdateStatusDto, @Req() request: RequestWithUser)
-    {
-        await this.usersService.setStatus(status, request.user.id);
-        return await this.usersService.getById(request.user.id);
-    }
-
     @Get()
     @UseGuards(JwtTwoFactornGuard)
     async  getCurrent(@Req() request: RequestWithUser) {
